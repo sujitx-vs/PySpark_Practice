@@ -1,4 +1,5 @@
 from pyspark.sql import SparkSession
+from pyspark.sql.functions import round
 
 # Create Spark Session
 spark = SparkSession.builder.appName("Modify Column").getOrCreate()
@@ -21,7 +22,7 @@ print("Original Salary")
 df.show()
 
 # Increase salary by 10%
-df2 = df.withColumn("Salary", df.Salary * 1.10)
+df2 = df.withColumn("Salary",round(df.Salary * 1.10, 2))
 
 print("Updated Salary")
 df2.show()
